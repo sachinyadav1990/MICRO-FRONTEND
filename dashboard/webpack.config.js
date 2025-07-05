@@ -8,15 +8,15 @@ module.exports = {
   entry: './src/index.js', // Main entry file
   mode: 'development',
   devServer: {
-    port: 3000, // Runs on localhost:3000
-     headers: {
+    port: 3001, // Runs on localhost:3001
+    headers: {
       'Access-Control-Allow-Origin': '*',
     },
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/', // set correctly
+    publicPath: 'auto', // set correctly
   },
   module: {
     rules: [
@@ -48,9 +48,11 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'host', // Name of host
-      remotes: {
-         dashboardApp: 'dashboardApp@http://localhost:3001/remoteEntry.js',
+      name: 'dashboardApp', // Name of host
+      filename: 'remoteEntry.js', // Name of the file that will be generated
+      exposes: {
+        // './dashboardIndex': './src/index.js', // Expose the Dashboard component
+        './Myname': './src/Myname.js', // Expose the Myname component
       },
       shared: ['react', 'react-dom'],
     }),

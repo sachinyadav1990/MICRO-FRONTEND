@@ -1,25 +1,18 @@
 import React from 'react';
+import { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-
+import MiniDrawer from './menu/Menu';
+//  const Dashboard = React.lazy(() => import('dashboardApp/App'));
+ const Myname = React.lazy(() => import('dashboardApp/Myname'));
 
 
 function Host() {
   return (
     <div className="App">
-      <header className="App-header">
-       
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <MiniDrawer />
+  {/* <Myname /> */}
+      
     </div>
   );
 }
